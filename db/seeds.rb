@@ -8,3 +8,6 @@
 ServiceType.create(name: 'Lavadero')
 ServiceType.create(name: 'Parqueadero')
 ServiceType.create(name: 'Taller')
+VehicleType.create(name: 'Bicicleta')
+VehicleType.create(name: 'Carro')
+VehicleType.create(name: 'Moto')
