@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :set_vehicle, only: [:show, :edit, :update, :destroy, :vehiclesByType]
 
   # GET /vehicles
   # GET /vehicles.json
@@ -58,6 +58,16 @@ class VehiclesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /vehicle_types/:id/vehicles
+  # GET /vehicle_types/:id/vehicles.json
+  def vehiclesByType
+    @vehicles = Vehicle.where(VehicleType_id: params[:id])
+    respond_to do |format|
+      format.json { render :json => @vehicles, status: :ok}
+      format.html { render :vehiclesByType, notice: 'Vehicle was successfully destroyed.' }
     end
   end
 

@@ -61,6 +61,16 @@ class ServicesController < ApplicationController
     end
   end
 
+  # GET /vehicle_types/:id/services
+  def servicesByVehicleType
+
+  end
+
+  # GET /services_types/:id/services
+  def servicesByType
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service
