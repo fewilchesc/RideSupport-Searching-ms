@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20200410232807) do
     t.integer "ServiceType_id"
     t.integer "VehicleType_id"
     t.text "description", null: false
-    t.datetime "openingTime", null: false
-    t.datetime "closingTime", null: false
+    t.time "openingTime", null: false
+    t.time "closingTime", null: false
     t.decimal "cost", null: false
     t.text "location"
     t.datetime "created_at", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20200410232807) do
 
   create_table "vehicles", force: :cascade do |t|
     t.integer "VehicleType_id"
-    t.string "plate", limit: 6, null: false
+    t.string "plate", limit: 10, null: false
     t.string "brand", limit: 15, null: false
     t.string "model", limit: 15, null: false
     t.string "mainColor", limit: 10
