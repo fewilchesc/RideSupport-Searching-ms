@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ServiceType: one
+  VehicleType: one
+  name: MyString
+  openingTime: 2020-04-10 18:28:07
+  closingTime: 2020-04-10 18:28:07
+  cost: 
+  location: MyText
+
+two:
+  ServiceType: two
+  VehicleType: two
+  name: MyString
+  openingTime: 2020-04-10 18:28:07
+  closingTime: 2020-04-10 18:28:07
+  cost: 
+  location: MyText

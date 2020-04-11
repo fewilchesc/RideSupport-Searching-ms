@@ -10,18 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200410215748) do
+ActiveRecord::Schema.define(version: 20200410232807) do
 
   create_table "service_types", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_service_types_on_name", unique: true
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "ServiceType_id"
+    t.integer "VehicleType_id"
+    t.text "description", null: false
+    t.datetime "openingTime", null: false
+    t.datetime "closingTime", null: false
+    t.decimal "cost", null: false
+    t.text "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ServiceType_id"], name: "index_services_on_ServiceType_id"
+    t.index ["VehicleType_id"], name: "index_services_on_VehicleType_id"
   end
 
   create_table "vehicle_types", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_vehicle_types_on_name", unique: true
   end
 
   create_table "vehicles", force: :cascade do |t|

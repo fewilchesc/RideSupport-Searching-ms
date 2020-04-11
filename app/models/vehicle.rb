@@ -1,9 +1,4 @@
 class Vehicle < ApplicationRecord
-  String :plate
-  String :brand
-  String :model
-  String :mainColor
-  String :secondaryColor
 
   belongs_to :VehicleType
 

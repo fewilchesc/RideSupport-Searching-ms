@@ -10,6 +10,7 @@ class CreateVehicles < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
     add_index :vehicles, :plate, unique: true
     add_foreign_key :vehicles, :vehicle_types, column: :id
   end

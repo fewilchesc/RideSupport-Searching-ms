@@ -12,3 +12,5 @@ ServiceType.create(name: 'Taller')
 VehicleType.create(name: 'Bicicleta')
 VehicleType.create(name: 'Carro')
 VehicleType.create(name: 'Moto')
+
+Vehicle.create(plate: 'TOM-114',brand: 'Chevrolet',model: 'Aveo GT',mainColor: 'Azul',secondaryColor: 'Negro')
