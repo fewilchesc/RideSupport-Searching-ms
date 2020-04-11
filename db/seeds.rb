@@ -25,3 +25,8 @@ numOfVehicles.times do |row|
   Vehicle.create(VehicleType_id: rand(1..VehicleType.count),plate:  Faker::Vehicle.license_plate,brand: @brand,model: Faker::Vehicle.model(make_of_model: @brand),mainColor: Faker::Color.color_name ,secondaryColor: Faker::Color.color_name )
 end
 
+for i in 1..VehicleType.count
+  for j in 1..numOfServiceTypes
+    Service.create(ServiceType_id: j,VehicleType_id: i,description: Faker::Lorem.sentences ,openingTime: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),closingTime: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),cost: rand(1000..20000),location: Faker::Address.full_address)
+  end
+end

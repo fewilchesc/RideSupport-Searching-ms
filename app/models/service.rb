@@ -6,6 +6,6 @@ class Service < ApplicationRecord
   validates :description, presence: true
   validates :openingTime, presence: true
   validates :closingTime, presence: true
-  validates :cost, presence: true, numericality: true,numericality: {greater_than: 0}
+  validates :cost, presence: true, numericality: {greater_than: 0}
 
 end
