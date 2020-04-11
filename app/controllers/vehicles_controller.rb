@@ -67,7 +67,7 @@ class VehiclesController < ApplicationController
     @vehicles = Vehicle.where(VehicleType_id: params[:id])
     respond_to do |format|
       format.json { render :json => @vehicles, status: :ok}
-      format.html { render :vehiclesByType, notice: 'Vehicle was successfully destroyed.' }
+      format.html { render :vehiclesByType}
     end
   end
 

@@ -62,13 +62,22 @@ class ServicesController < ApplicationController
   end
 
   # GET /vehicle_types/:id/services
+  # GET /vehicle_types/:id/services.json
   def servicesByVehicleType
-
+    @services = Service.where(VehicleType_id: params[:id])
+    respond_to do |format|
+      format.json { render :json => @services, status: :ok}
+      format.html { render :servicesByVehicleType}
+    end
   end
 
   # GET /services_types/:id/services
   def servicesByType
-
+    @services = Service.where(ServiceType_id: params[:id])
+    respond_to do |format|
+      format.json { render :json => @services, status: :ok}
+      format.html { render :servicesByType}
+    end
   end
 
   private
