@@ -1,0 +1,653 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for getting services
+  description: Ruby on Rails + MySQL
+  license:
+    name: Software Architecture, 2020-I
+host: host:3000
+basePath: /ridesupport-getservices-ms/resources
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  #Service
+  /service:
+    post:
+      summary: Creates a new service
+      operationId: createService
+      parameters:
+        - name: service
+          in: body
+          required: true
+          description: Service Object
+          schema:
+            $ref: '#/definitions/ServiceInput'
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all services
+      operationId: indexServices
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ServicesList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /services/{id}:
+    get:
+      summary: Returns a service with the given id
+      operationId: showService
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Service'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a service with the given id
+      operationId: updateService
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service to be updated
+          required: true
+          type: integer
+        - name: user
+          in: body
+          required: true
+          description: User Object
+          schema:
+            $ref: '#/definitions/ServiceInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a service with the given id
+      operationId: destroyService
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  #Vehicle
+  /vehicle:
+    post:
+      summary: Creates a new vehicle
+      operationId: createVehicle
+      parameters:
+        - name: vehicle
+          in: body
+          required: true
+          description: Vehicle Object
+          schema:
+            $ref: '#/definitions/VehicleInput'
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all vehicles
+      operationId: indexVehicles
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ServicesList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /vehicles/{id}:
+    get:
+      summary: Returns a vehicle with the given id
+      operationId: showVehicle
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Vehicle'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a vehicle with the given id
+      operationId: updateVehicle
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle to be updated
+          required: true
+          type: integer
+        - name: user
+          in: body
+          required: true
+          description: User Object
+          schema:
+            $ref: '#/definitions/VehicleInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a vehicle with the given id
+      operationId: destroyVehicle
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  #VehicleType
+  /vehicleType:
+    post:
+      summary: Creates a new vehicle type 
+      operationId: createVehicleType
+      parameters:
+        - name: vehicleType
+          in: body
+          required: true
+          description: VehicleType Object
+          schema:
+            $ref: '#/definitions/VehicleTypeInput'
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all vehicle types
+      operationId: indexVehicleTypes
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/VehicleTypesList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /vehicle_types/{id}:
+    get:
+      summary: Returns a vehicl type with the given id
+      operationId: showVehicleType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle type to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/VehicleType'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a vehicle type with the given id
+      operationId: updateVehicleType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle type to be updated
+          required: true
+          type: integer
+        - name: user
+          in: body
+          required: true
+          description: User Object
+          schema:
+            $ref: '#/definitions/VehicleTypeInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a vehicle type with the given id
+      operationId: destroyVehicleType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the vehicle type to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+  #ServiceType
+  /serviceType:
+    post:
+      summary: Creates a new service type 
+      operationId: createServiceType
+      parameters:
+        - name: serviceType
+          in: body
+          required: true
+          description: ServiceType Object
+          schema:
+            $ref: '#/definitions/ServiceTypeInput'
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all vehicle types
+      operationId: indexServiceTypes
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ServiceTypesList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /service_types/{id}:
+    get:
+      summary: Returns a service type with the given id
+      operationId: showServiceType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service type to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ServiceType'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a service type with the given id
+      operationId: updateServiceType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service type to be updated
+          required: true
+          type: integer
+        - name: user
+          in: body
+          required: true
+          description: User Object
+          schema:
+            $ref: '#/definitions/VehicleTypeInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a service type with the given id
+      operationId: destroyServiceType
+      parameters:
+        - name: id
+          in: path
+          description: The id of the service type to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+
+  #Service
+  Service:
+    type: object
+    properties:
+      service_id:
+        type: integer
+      serviceType_id:
+        type: integer
+      vehicleType_id:
+        type: integer
+      openingTime:
+        type: string
+      closingTime:
+        type: string
+      cost:
+        type: number
+      location:
+        type: string
+  
+  
+  ServiceInput:
+    type: object
+    properties:
+      serviceType_id:
+        type: integer
+      vehicleType_id:
+        type: integer
+      openingTime:
+        type: string
+      closingTime:
+        type: string
+      cost:
+        type: number
+      location:
+        type: string
+        
+  ServicesList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Service'
+        
+  #Vehicle
+  Vehicle:
+    type: object
+    properties:
+      vehicle_id:
+        type: integer
+      vehicleType_id:
+        type: integer
+      plate:
+        type: string
+      brand:
+        type: string
+      model:
+        type: string
+      mainColor:
+        type: string
+      secondaryColor:
+        type: string
+        
+  
+  VehicleInput:
+    type: object
+    properties:
+      vehicleType_id:
+        type: integer
+      plate:
+        type: string
+      brand:
+        type: string
+      model:
+        type: string
+      mainColor:
+        type: string
+      secondaryColor:
+        type: string
+        
+  VehiclesList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Vehicle'
+        
+  #Service Type
+  ServiceType:
+    type: object
+    properties:
+      service_type_id:
+        type: integer
+      name:
+        type: string
+        
+  
+  ServiceTypeInput:
+    type: object
+    properties:
+      name:
+        type: string
+        
+  ServiceTypesList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceType'
+        
+  #Vehicle Type
+  VehicleType:
+    type: object
+    properties:
+      vehicle_type_id:
+        type: integer
+      name:
+        type: string
+        
+  
+  VehicleTypeInput:
+    type: object
+    properties:
+      name:
+        type: string
+        
+  VehicleTypesList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/VehicleType'
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
+      description:
+        type: object
