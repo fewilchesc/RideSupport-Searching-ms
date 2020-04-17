@@ -363,6 +363,62 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
+   
+  /vehicle_types/{id}/vehicles/:
+    get:
+      summary: Returns the vehicles given a id of vehicle type
+      operationId: vehiclesByType
+      parameters:
+        - name: id
+          in: path
+          description: The vehicles which are of vehicle type
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/VehicleType'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'  
+            
+  /vehicle_types/{id}/services/:
+    get:
+      summary: Returns the services given a id of vehicle type
+      operationId: servicesByVehicleType
+      parameters:
+        - name: id
+          in: path
+          description: The services for the vehicle type
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/VehicleType'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel' 
             
   #ServiceType
   /serviceType:
@@ -479,6 +535,34 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
+            
+  /service_types/{id}/services/:
+    get:
+      summary: Returns the services given a service type id
+      operationId: servicesByType
+      parameters:
+        - name: id
+          in: path
+          description: The services given a service Type id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ServiceType'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel' 
 
 definitions:
 
