@@ -10,6 +10,7 @@ default: &default
   timeout: 5000
   host: db
   password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: 3000
 
 development:
   <<: *default
