@@ -8,7 +8,7 @@ default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: db
+  host: 'get-services-db-service'
   password: <%= ENV['DATABASE_PASSWORD'] %>
   port: 3000
 
